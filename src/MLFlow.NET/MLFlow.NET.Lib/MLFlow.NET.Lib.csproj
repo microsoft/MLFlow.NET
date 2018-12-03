@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Azadeh Khojandi, Rian Finnegan, Jason Goodsell, Jordan Knight</Authors>
+    <Company>Microsoft CSE DevCrews</Company>
+    <Product>MLFlow.NET</Product>
+    <PackageId>MLFlow.NET</PackageId>
   </PropertyGroup>
 
 </Project>
