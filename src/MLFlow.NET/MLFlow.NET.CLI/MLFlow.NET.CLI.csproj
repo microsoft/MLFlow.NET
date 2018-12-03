@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>MLFlow.NET.CLI</RootNamespace>
+    <AssemblyName>MLFlow.NET.CLI</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MLFlow.NET.Lib\MLFlow.NET.Lib.csproj" />
+  </ItemGroup>
+
+</Project>
