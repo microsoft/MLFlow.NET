@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MLFlow.NET.SwaggerHelper.Models;
 
 namespace MLFlow.NET.SwaggerHelper.Controllers
 {
@@ -24,6 +25,22 @@ namespace MLFlow.NET.SwaggerHelper.Controllers
         [Route("create")]
         [HttpPost]
         public IActionResult create([Required]string name, string artifact_location = null)
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// List Experiments
+        /// </summary>
+        /// <remarks>
+        /// Get a list of all experiments.
+        /// </remarks>
+        /// <param name="view_type">Qualifier for type of experiments to be returned. If unspecified, return only active experiments.</param>
+        
+        /// <returns></returns>
+        [Route("list")]
+        [HttpPost]
+        public ActionResult<Experiment> list(ViewType view_type)
         {
             return null;
         }
