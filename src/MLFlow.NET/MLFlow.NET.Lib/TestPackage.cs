@@ -8,7 +8,7 @@ namespace MLFlow.NET.Lib
     {
         public string HiTehre()
         {
-            return "Hi there version 2 with many new features";
+            return "Hi there version 3 with many new features and some other awesome stuff";
         }
     }
 }
