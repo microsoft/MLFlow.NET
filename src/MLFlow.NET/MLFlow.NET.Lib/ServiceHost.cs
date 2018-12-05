@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using MLFlow.NET.Lib.Contract;
 using MLFlow.NET.Lib.Model;
+using MLFlow.NET.Lib.Services;
 
 namespace MLFlow.NET.Lib
 {
@@ -22,8 +23,8 @@ namespace MLFlow.NET.Lib
 
         public ServiceHost Configure(IServiceCollection services)
         {
-            services.AddSingleton<IMLFlowService, IMLFlowService>();
-            
+            services.AddSingleton<IMLFlowService, MLFlowService>();
+            services.AddSingleton<IHttpService, HttpService>();
             return this;
         }
 

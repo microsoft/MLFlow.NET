@@ -26,8 +26,12 @@ namespace MLFlow.NET.Tests
 
 
             ServiceCollection = new ServiceCollection();
+
             ServiceCollection.AddMFlowNet();
-            ServiceCollection.Configure<MLFlowConfiguration>(Configuration.GetSection(nameof(MLFlowConfiguration)));
+
+            ServiceCollection.Configure<MLFlowConfiguration>(
+                Configuration.GetSection(nameof(MLFlowConfiguration)
+            ));
 
             ServiceProvider = ServiceCollection.BuildServiceProvider();
         }

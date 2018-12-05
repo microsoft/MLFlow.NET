@@ -6,6 +6,7 @@ namespace MLFlow.NET.Lib.Model
 {
     public class MLFlowConfiguration
     {
-        public string MLFlowerServerUrl { get; set; }
+        public string MlFlowServerBaseUrl { get; set; }
+        public string APIBase { get; set; }
     }
 }
