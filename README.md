@@ -1,6 +1,6 @@
 # MLFlow.NET
 
-[![Build Status](https://dev.azure.com/aussiedevcrew/MLFlow.NET/_apis/build/status/MLFlow.NET-ASP.NET%20Core-CI)](https://dev.azure.com/aussiedevcrew/MLFlow.NET/_build/latest?definitionId=3)
+[![Build Status](https://dev.azure.com/aussiedevcrew/MLFlow.NET/_apis/build/status/MLFlow.NET-ASP.NET%20Core-CI-Github)](https://dev.azure.com/aussiedevcrew/MLFlow.NET/_build/latest?definitionId=4)
 
 
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/MLFlow.NET.svg)](https://www.nuget.org/packages/MLFlow.NET/)
