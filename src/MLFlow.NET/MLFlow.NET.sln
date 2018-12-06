@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLFlow.NET.Lib", "MLFlow.NE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLFlow.NET.Tests", "MLFlow.NET.Tests\MLFlow.NET.Tests.csproj", "{D7E75D6B-239F-4764-AC59-ED9C7783B9A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLFlow.Sample.CLI", "MLFlow.Sample.CLI\MLFlow.Sample.CLI.csproj", "{26A998D0-CCD5-4BAF-B165-44F63C2ED73F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLFlow.Sample.CLI", "MLFlow.Sample.CLI\MLFlow.Sample.CLI.csproj", "{26A998D0-CCD5-4BAF-B165-44F63C2ED73F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{471D3F2B-628C-495B-889B-32A7EBDDD6D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{26A998D0-CCD5-4BAF-B165-44F63C2ED73F} = {471D3F2B-628C-495B-889B-32A7EBDDD6D4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2C0816C7-D434-41D2-8DB3-E4BE6E43ECB7}

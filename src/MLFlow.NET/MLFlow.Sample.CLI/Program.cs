@@ -22,7 +22,7 @@ namespace MLFlow.Sample.CLI
 
             var flowService = services.GetService<IMLFlowService>();
 
-           
+
             var g = Guid.NewGuid().ToString();
             var result = await _createExperiment(g, flowService);
 
@@ -34,7 +34,7 @@ namespace MLFlow.Sample.CLI
 
             var logResultMetric = await flowService
                 .LogMetric(
-                    runResult.Run.Info.RunUuid, 
+                    runResult.Run.Info.RunUuid,
                     "Somekey", 1234);
 
             var logResultParam = await flowService
@@ -59,18 +59,17 @@ namespace MLFlow.Sample.CLI
             var runName = "this is a run name";
             var sourceType = SourceType.NOTEBOOK;
             var sourceName = "String descriptor for the run’s source";
-
             var entryPointName = "Name of the project entry point associated with the current run, if any.";
             var startTime = ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds(); //unix timestamp
-
-
+           
+            //get source version
             var path = Directory.GetCurrentDirectory();
             var repopath = path.Substring(0, path.IndexOf("src", StringComparison.Ordinal));
             var repo = new Repository(repopath);
             var lastcommit = repo.Commits.Last();
             var sourceVersion = lastcommit.Sha;
 
-           
+
             RunTag[] tags = { new RunTag() { Key = "testkey", Value = "testvalue" } };
 
             var createRunRequest = new CreateRunRequest()
@@ -87,7 +86,6 @@ namespace MLFlow.Sample.CLI
             };
 
             var runResult = await flowService.CreateRun(createRunRequest);
-
             return runResult;
         }
 
@@ -95,24 +93,20 @@ namespace MLFlow.Sample.CLI
         {
             var builder = new ConfigurationBuilder();
             // tell the builder to look for the appsettings.json file
-            builder
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+            builder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
-            var Configuration = builder.Build();
-
+            var configuration = builder.Build();
 
             var serviceCollection = new ServiceCollection();
 
             serviceCollection.AddMFlowNet();
 
             serviceCollection.Configure<MLFlowConfiguration>(
-                Configuration.GetSection(nameof(MLFlowConfiguration)
+                configuration.GetSection(nameof(MLFlowConfiguration)
                 ));
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
-
             return serviceProvider;
         }
-        
     }
 }
