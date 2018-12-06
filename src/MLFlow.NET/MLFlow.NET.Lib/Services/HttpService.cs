@@ -23,7 +23,7 @@ namespace MLFlow.NET.Lib.Services
             _client.BaseAddress = new Uri(config.Value.MlFlowServerBaseUrl);
         }
 
-        string _serialise(Dictionary<string, string> parameters)
+        string _serialise<T>(Dictionary<string, T> parameters)
         {
             
             
@@ -41,6 +41,7 @@ namespace MLFlow.NET.Lib.Services
             // Call asynchronous network methods in a try/catch block to handle exceptions
             try
             {
+
                 var uri = _getUrl(urlPart);
                 var content = new StringContent(_serialise(parameters));
                 var response = await _client.PostAsync(uri, content);
