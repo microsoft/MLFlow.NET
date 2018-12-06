@@ -15,4 +15,10 @@
 	  <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Docker\docker-compose.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
