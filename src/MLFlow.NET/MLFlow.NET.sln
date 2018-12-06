@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLFlow.NET.Lib", "MLFlow.NET.Lib\MLFlow.NET.Lib.csproj", "{26C3E892-C137-4F5F-8D9F-3FD1D9677346}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLFlow.NET.Tests", "MLFlow.NET.Tests\MLFlow.NET.Tests.csproj", "{D7E75D6B-239F-4764-AC59-ED9C7783B9A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLFlow.NET.Tests", "MLFlow.NET.Tests\MLFlow.NET.Tests.csproj", "{D7E75D6B-239F-4764-AC59-ED9C7783B9A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLFlow.Sample.CLI", "MLFlow.Sample.CLI\MLFlow.Sample.CLI.csproj", "{26A998D0-CCD5-4BAF-B165-44F63C2ED73F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D7E75D6B-239F-4764-AC59-ED9C7783B9A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7E75D6B-239F-4764-AC59-ED9C7783B9A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7E75D6B-239F-4764-AC59-ED9C7783B9A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26A998D0-CCD5-4BAF-B165-44F63C2ED73F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26A998D0-CCD5-4BAF-B165-44F63C2ED73F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26A998D0-CCD5-4BAF-B165-44F63C2ED73F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26A998D0-CCD5-4BAF-B165-44F63C2ED73F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
