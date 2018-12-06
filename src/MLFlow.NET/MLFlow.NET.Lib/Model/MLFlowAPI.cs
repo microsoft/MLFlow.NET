@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MLFlow.NET.Lib.Model
+﻿namespace MLFlow.NET.Lib.Model
 {
     public class MLFlowAPI
     {
@@ -11,6 +7,7 @@ namespace MLFlow.NET.Lib.Model
         {
             public const string BasePath = "experiments";
             public const string Create = "create";
+            public const string List = "list";
         }
         public class Runs
         {

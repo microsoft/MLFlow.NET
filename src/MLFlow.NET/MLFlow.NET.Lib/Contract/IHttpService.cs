@@ -8,5 +8,9 @@ namespace MLFlow.NET.Lib.Contract
         Task<T> Post<T, Y>(string urlPart, Y request)
             where T : class
             where Y : class;
+
+        Task<T> Get<T, Y>(string urlPart, Y request)
+            where T : class
+            where Y : class;
     }
 }

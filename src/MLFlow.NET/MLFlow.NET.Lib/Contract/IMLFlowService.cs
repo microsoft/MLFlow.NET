@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using MLFlow.NET.Lib.Model;
 using MLFlow.NET.Lib.Model.Responses.Experiment;
 using MLFlow.NET.Lib.Model.Responses.Run;
 
@@ -18,5 +19,7 @@ namespace MLFlow.NET.Lib.Contract
 
         Task<LogParam> LogParameter(string run_uuid,
             string key, string value);
+
+        Task<ListExperimentsResponse> ListExperiments(ViewType viewtype);
     }
 }
