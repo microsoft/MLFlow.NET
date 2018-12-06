@@ -13,6 +13,12 @@ MLFlow.NET is a .NET Standard 2.0 based wrapper for the REST based [MLFlow](http
 
 You need .Net core 2.2, you can download it from [https://dotnet.microsoft.com/download](https://dotnet.microsoft.com/download) 
 
+If you don't have correct .NET SDK you will see this error 
+
+"The current .NET SDK does not support targeting .NET Core 2.2. 
+Either target .NET Core 2.1 or lower, or use a version of the .NET SDK that supports .NET Core 2.2."
+
+
 ## Getting Started
 
 Start by installing the MLFlow.NET Package.
