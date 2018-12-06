@@ -16,10 +16,7 @@ namespace MLFlow.NET.Lib
     {
         public IServiceCollection Services { get; private set; }
         public IServiceProvider ServiceProvier { get; private set; }
-        public ServiceHost()
-        {
-            var services = new ServiceCollection();
-        }
+       
 
         public ServiceHost Configure(IServiceCollection services)
         {
