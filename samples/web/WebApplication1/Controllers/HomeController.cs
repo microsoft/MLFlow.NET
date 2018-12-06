@@ -21,35 +21,33 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Index()
         {
             var newExperiment = await this.flowService.CreateExperiment("New_Experiement");
-
             var experimentId = newExperiment.ExperimentId;
+
             var userId = "azadeh khojandi";
             var runName = "this is a run name";
             var sourceType = SourceType.NOTEBOOK;
             var sourceName = "String descriptor for the run’s source";
-
             var entryPointName = "Name of the project entry point associated with the current run, if any.";
             var startTime = ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds(); //unix timestamp
 
+           
 
-          
 
-            //todo [az] pass tags
-            //RunTag[] tags = new RunTag[]{new RunTag(){Key = "testkey",Value = "testvalue"} };
+            RunTag[] tags = { new RunTag() { Key = "testkey", Value = "testvalue" } };
 
-            //todo [az] runame is empty - check mlflow source code
+            var createRunRequest = new CreateRunRequest()
+            {
+                ExperimentId = experimentId,
+                UserId = userId,
+                Runname = runName,
+                SourceType = sourceType,
+                SourceName = sourceName,
+                EntryPointName = entryPointName,
+                StartTime = startTime,
+                Tags = tags
+            };
 
-            RunTag[] tags = null;
-            var runResult = await flowService.CreateRun(
-                experimentId,
-                userId,
-                runName,
-                sourceType,
-                sourceName,
-                entryPointName,
-                startTime,
-                "",
-                tags);
+            var runResult = await flowService.CreateRun(createRunRequest);
 
             var logResultMetric = await flowService
                 .LogMetric(
