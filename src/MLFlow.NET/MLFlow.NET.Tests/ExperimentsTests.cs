@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,5 +21,19 @@ namespace MLFlow.NET.Tests
 
             Assert.IsNotNull(result);
         }
+
+
+        [TestMethod]
+        public async Task GetExperimentShouldReturnResultIfExperimentExist()
+        {
+            var flowService = Resolve<IMLFlowService>();
+            var viewtype = ViewType.ALL;
+            var allExperiments = await flowService.ListExperiments(viewtype);
+            var experiment= allExperiments.Experiments.First();
+
+            var result= await flowService.GetExperiment(experiment.ExperimentId);
+            Assert.IsNotNull(result);
+        }
+
     }
 }

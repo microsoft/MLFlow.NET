@@ -21,5 +21,6 @@ namespace MLFlow.NET.Lib.Contract
             string key, string value);
 
         Task<ListExperimentsResponse> ListExperiments(ViewType viewtype);
+        Task<GetExperimentResponse> GetExperiment(int experiment_id);
     }
 }
