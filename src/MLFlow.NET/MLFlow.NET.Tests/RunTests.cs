@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Mime;
-using System.Text;
 using System.Threading.Tasks;
 using LibGit2Sharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -83,22 +80,27 @@ namespace MLFlow.NET.Tests
             var lastcommit = repo.Commits.Last();
             var sourceVersion = lastcommit.Sha;
 
-            //todo [az] pass tags
-            //RunTag[] tags = new RunTag[]{new RunTag(){Key = "testkey",Value = "testvalue"} };
+
+            RunTag[] tags = { new RunTag() { Key = "testkey", Value = "testvalue" } };
 
             //todo [az] runame is empty - check mlflow source code
+            //todo [az] unix startTime not showing correct time on the UI
 
-            RunTag[] tags = null;
+            var createRunRequest = new CreateRunRequest()
+            {
+                ExperimentId = experimentId,
+                UserId = userId,
+                Runname = runName,
+                SourceType = sourceType,
+                SourceName = sourceName,
+                EntryPointName = entryPointName,
+                StartTime = startTime,
+                SourceVersion = sourceVersion,
+                Tags = tags
+            };
+
             var runResult = await flowService.CreateRun(
-                experimentId,
-                userId,
-                runName,
-                sourceType,
-                sourceName,
-                entryPointName,
-                startTime,
-                sourceVersion,
-                tags);
+                createRunRequest);
 
             return runResult;
         }

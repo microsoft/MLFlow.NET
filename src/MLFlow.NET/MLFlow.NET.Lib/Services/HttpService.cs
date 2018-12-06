@@ -1,33 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using MLFlow.NET.Lib.Contract;
 using MLFlow.NET.Lib.Model;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 
 namespace MLFlow.NET.Lib.Services
 {
     public class HttpService : IHttpService
     {
         private readonly IOptions<MLFlowConfiguration> _config;
-        private HttpClient _client;
+        private readonly HttpClient _client;
         public HttpService(IOptions<MLFlowConfiguration> config)
         {
             _config = config;
-            _client = new HttpClient();
-            _client.BaseAddress = new Uri(config.Value.MlFlowServerBaseUrl);
+            _client = new HttpClient { BaseAddress = new Uri(config.Value.MlFlowServerBaseUrl) };
         }
 
-        string _serialise<T>(Dictionary<string, T> parameters)
+        string _serialise<T>(T request)
         {
-            
-            
-            var content =  JsonConvert.SerializeObject(parameters, Newtonsoft.Json.Formatting.None,
+
+
+            var content = JsonConvert.SerializeObject(request, Newtonsoft.Json.Formatting.None,
                 new JsonSerializerSettings
                 {
                     NullValueHandling = NullValueHandling.Ignore
@@ -35,15 +30,16 @@ namespace MLFlow.NET.Lib.Services
             return content;
         }
 
-        public async Task<T> Post<T>(string urlPart, Dictionary<string, string> parameters)
-            where T:class 
+
+
+        public async Task<T> Post<T, Y>(string urlPart, Y request) where T : class where Y : class
         {
             // Call asynchronous network methods in a try/catch block to handle exceptions
             try
             {
 
                 var uri = _getUrl(urlPart);
-                var content = new StringContent(_serialise(parameters));
+                var content = new StringContent(_serialise<Y>(request));
                 var response = await _client.PostAsync(uri, content);
 
                 response.EnsureSuccessStatusCode();

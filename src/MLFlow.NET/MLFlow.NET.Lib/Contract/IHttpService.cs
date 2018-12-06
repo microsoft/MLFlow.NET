@@ -5,7 +5,8 @@ namespace MLFlow.NET.Lib.Contract
 {
     public interface IHttpService
     {
-        Task<T> Post<T>(string urlPart, Dictionary<string, string> parameters)
-            where T : class;
+        Task<T> Post<T, Y>(string urlPart, Y request)
+            where T : class
+            where Y : class;
     }
 }
