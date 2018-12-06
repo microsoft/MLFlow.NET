@@ -38,5 +38,8 @@ namespace MLFlow.NET.Lib.Contract
 
         Task<LogMetric> LogMetric(string run_uuid,
             string key, float value, long? timeStamp = null);
+
+        Task<LogParam> LogParameter(string run_uuid,
+            string key, string value);
     }
 }

@@ -30,7 +30,7 @@ namespace MLFlow.NET.Lib.Services
             var response = await _httpService.Post<CreateResponse>(_getPath(MLFlowAPI.Experiments.BasePath, MLFlowAPI.Experiments.Create),
                 _getParameters(("name", name), ("artifact_location", artifact_location)));
             return response;
-        }
+            }
 
         public async Task<RunResponse> CreateRun(int experiment_id,
                                         string user_id,
@@ -84,6 +84,21 @@ namespace MLFlow.NET.Lib.Services
                     ("key", key),
                     ("value", value.ToString()),
                     ("timeStamp", timeStamp.ToString())
+                ));
+
+            return response;
+        }
+
+        public async Task<LogParam> LogParameter(string run_uuid,
+            string key, string value)
+        {
+            var response = await _httpService.Post<LogParam>(
+                _getPath(MLFlowAPI.Runs.BasePath,
+                    MLFlowAPI.Runs.LogParam),
+                _getParameters(
+                    ("run_uuid", run_uuid),
+                    ("key", key),
+                    ("value", value)
                 ));
 
             return response;
