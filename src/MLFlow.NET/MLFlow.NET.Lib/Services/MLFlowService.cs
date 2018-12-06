@@ -68,6 +68,32 @@ namespace MLFlow.NET.Lib.Services
             return response;
         }
 
+        public async Task<LogMetric> LogMetric(string run_uuid,
+            string key, float value, long? timeStamp = null)
+        {
+            if (!timeStamp.HasValue)
+            {
+                timeStamp = _getTimestamp();
+            }
+
+            var response = await _httpService.Post<LogMetric>(
+                _getPath(MLFlowAPI.Runs.BasePath, 
+                    MLFlowAPI.Runs.LogMetric),
+                _getParameters(
+                    ("run_uuid", run_uuid), 
+                    ("key", key),
+                    ("value", value.ToString()),
+                    ("timeStamp", timeStamp.ToString())
+                ));
+
+            return response;
+        }
+
+        long _getTimestamp()
+        {
+            return ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds();
+        }
+
         string _getPath(string basePart, string method)
         {
             return $"{basePart}/{method}";
