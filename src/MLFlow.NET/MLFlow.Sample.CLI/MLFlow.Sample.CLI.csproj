@@ -23,7 +23,7 @@
 		<PackageReference Include="LibGit2Sharp" Version="0.26.0-preview-0070" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
 		
-		<PackageReference Include="MLFlow.NET" Version="1.0.0-CI-20181206-005844" />
+		<PackageReference Include="MLFlow.NET" Version="1.0.0-CI-20181206-023639" />
 	</ItemGroup>
 
 	<ItemGroup>
