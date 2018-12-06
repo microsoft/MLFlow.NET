@@ -1,4 +1,4 @@
-﻿namespace MLFlow.NET.Lib.Contract
+﻿namespace MLFlow.NET.Lib.Model
 {
     public enum SourceType
     {

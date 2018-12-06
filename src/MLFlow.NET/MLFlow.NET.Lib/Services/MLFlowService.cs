@@ -73,6 +73,26 @@ namespace MLFlow.NET.Lib.Services
             return response;
         }
 
+        public async Task<ListExperimentsResponse> ListExperiments(ViewType viewtype)
+        {
+
+
+            var response = await _httpService.Get<ListExperimentsResponse, Object>(
+                _getPath(MLFlowAPI.Experiments.BasePath, MLFlowAPI.Experiments.List),
+                new { viewtype = viewtype.ToString() });
+
+            return response;
+        }
+
+        public async Task<GetExperimentResponse> GetExperiment(int experiment_id)
+        {
+            var response = await _httpService.Get<GetExperimentResponse, Object>(
+                _getPath(MLFlowAPI.Experiments.BasePath, MLFlowAPI.Experiments.Get),
+                new {experiment_id });
+
+            return response;
+        }
+
         long _getTimestamp()
         {
             return ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds();

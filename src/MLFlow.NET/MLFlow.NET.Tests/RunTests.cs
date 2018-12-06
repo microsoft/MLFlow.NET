@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LibGit2Sharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MLFlow.NET.Lib.Contract;
+using MLFlow.NET.Lib.Model;
 using MLFlow.NET.Lib.Model.Responses.Experiment;
 using MLFlow.NET.Lib.Model.Responses.Run;
 using Newtonsoft.Json;
@@ -83,7 +84,7 @@ namespace MLFlow.NET.Tests
 
             RunTag[] tags = { new RunTag() { Key = "testkey", Value = "testvalue" } };
 
-            //todo [az] runame is empty - check mlflow source code
+            //todo [az] run name is empty - check mlflow source code
             //todo [az] unix startTime not showing correct time on the UI
 
             var createRunRequest = new CreateRunRequest()
