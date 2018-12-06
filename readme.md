@@ -32,11 +32,48 @@ or
 Install-Package MLFlow.NET
 ```
 
-MLFlow.NET provides an extension method to integrate with your services provider - much like `services.AddMVC()` in ASP.NET Core projects. 
+### Setting up the [MLFlow](https://mlflow.org/).NET Services
+
+[MLFlow](https://mlflow.org/).NET provides an extension method to integrate with your services provider - much like `services.AddMVC()` in ASP.NET Core projects. 
 
 ```csharp
-include MLFlow.NET.Lib
+using MLFlow.NET.Lib;
+using MLFlow.NET.Lib.Model;
 ```
 
-In your Startup class add the services:
+For a web application navigate to your Startup.cs class `ConfigureServices` method  add the services:
+```csharp
+ services.Configure<MLFlowConfiguration>(
+                Configuration.GetSection(nameof(MLFlowConfiguration)
+            ));
+
+            services.AddMFlowNet();
 ```
+
+
+## Configuration
+
+The configuration file needs to be set up. You can see the setup above is using `MLFlowConfiguration`. Edit `appsettings.json` and add the following section, changing values as appropriate. 
+
+```json
+"MLFlowConfiguration": {
+        "MLFlowServerBaseUrl": "http://localhost:5000",
+        "APIBase": "api/2.0/preview/mlflow/"
+    }
+```
+
+## Setting up the docker container
+
+This SDK is just a wrapper, it does not acually implement MLFLow! You'll need a server to actually store the results. We've provided one in a docker container that is super easy to use. 
+
+Navigate to `/docker` in the repo. You can build the `Dockerfile` if you like, or just use the pre-made container from Docker Hub. 
+
+To use the premade container, type `docker-compose up` in the `/docker` folder. 
+
+This will launch the ML Flow server and expose it on port 5000. 
+
+You can navigate to this address in your browser to see the results. Careful not to rely on this docker-compose orchestrated container - it will not be durable and could remove your data between runs. See the ML FLow doco for information on how to save data to another location. 
+
+## Samples
+
+There are sampes located in the `/samples` folder. They include an ASP.NET Core web app and an .NET Core based console application
