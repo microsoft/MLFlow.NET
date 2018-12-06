@@ -8,6 +8,7 @@ using MLFlow.NET.Lib.Contract;
 using MLFlow.NET.Lib.Model;
 using MLFlow.NET.Lib.Model.Responses.Experiment;
 using MLFlow.NET.Lib.Model.Responses.Run;
+using Newtonsoft.Json;
 
 namespace MLFlow.NET.Lib.Services
 {
@@ -42,8 +43,18 @@ namespace MLFlow.NET.Lib.Services
                                         RunTag[] tags)
 
         {
+
+            //expected  "tags":[{key:'a','value:'b'}]
+            string tmptags = "";
+            if (tags != null)
+            {
+                tmptags = JsonConvert.SerializeObject(tags, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Formatting = Formatting.Indented });
+            }
+            //todo [Az] add tags =>  ("tags", tmptags)
+
             var response = await _httpService.Post<RunResponse>(_getPath(MLFlowAPI.Runs.BasePath, MLFlowAPI.Runs.Create),
-                
+
+
                 _getParameters(
                     ("experiment_id", experiment_id.ToString()),
                     ("user_id", user_id),
@@ -52,8 +63,7 @@ namespace MLFlow.NET.Lib.Services
                     ("source_name", source_name),
                     ("entry_point_name", entry_point_name),
                     ("start_time", start_time.ToString()),
-                    ("source_version", source_version),
-                    ("tags", tags?.ToString())
+                    ("source_version", source_version)
                     ));
             return response;
         }
@@ -63,11 +73,11 @@ namespace MLFlow.NET.Lib.Services
             return $"{basePart}/{method}";
         }
 
-        private Dictionary<string, string> _getParameters(params (string name, string value)[] items)
+        private Dictionary<string, T> _getParameters<T>(params (string name, T value)[] items)
         {
             return items.Where(i =>
                 !string.IsNullOrWhiteSpace(i.name)
-                && !string.IsNullOrWhiteSpace(i.value))
+                && i.value != null)
                 .ToDictionary(i => i.name, i => i.value);
         }
     }

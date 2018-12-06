@@ -69,10 +69,9 @@ namespace MLFlow.NET.Tests
             var lastcommit = repo.Commits.Last();
             var sourceVersion = lastcommit.Sha;
 
-            //todo [az] pass tags
             //RunTag[] tags = new RunTag[]{new RunTag(){Key = "testkey",Value = "testvalue"} };
 
-            //todo [az] runame is empty - check mlflow source code
+            //todo [az] run name is empty - check mlflow source code
             
             RunTag[] tags = null;
             var runResult = await flowService.CreateRun(
