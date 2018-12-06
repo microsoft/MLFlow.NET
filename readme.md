@@ -9,6 +9,10 @@
 
 MLFlow.NET is a .NET Standard 2.0 based wrapper for the REST based [MLFlow](https://mlflow.org/) server API . The SDK package allows you to call the MLFlow server API from .NET apps. A sample use case is writing a .NET Core app that validates a machine learning model or API and stores the result in MLFlow.
 
+## Prerequisite
+
+You need .Net core 2.2, you can download it from [https://dotnet.microsoft.com/download](https://dotnet.microsoft.com/download) 
+
 ## Getting Started
 
 Start by installing the MLFlow.NET Package.
