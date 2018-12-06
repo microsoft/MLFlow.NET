@@ -70,22 +70,23 @@ namespace MLFlow.Sample.CLI
             var lastcommit = repo.Commits.Last();
             var sourceVersion = lastcommit.Sha;
 
-            //todo [az] pass tags
-            //RunTag[] tags = new RunTag[]{new RunTag(){Key = "testkey",Value = "testvalue"} };
+           
+            RunTag[] tags = { new RunTag() { Key = "testkey", Value = "testvalue" } };
 
-            //todo [az] runame is empty - check mlflow source code
+            var createRunRequest = new CreateRunRequest()
+            {
+                ExperimentId = experimentId,
+                UserId = userId,
+                Runname = runName,
+                SourceType = sourceType,
+                SourceName = sourceName,
+                EntryPointName = entryPointName,
+                StartTime = startTime,
+                SourceVersion = sourceVersion,
+                Tags = tags
+            };
 
-            RunTag[] tags = null;
-            var runResult = await flowService.CreateRun(
-                experimentId,
-                userId,
-                runName,
-                sourceType,
-                sourceName,
-                entryPointName,
-                startTime,
-                sourceVersion,
-                tags);
+            var runResult = await flowService.CreateRun(createRunRequest);
 
             return runResult;
         }
