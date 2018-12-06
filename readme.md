@@ -28,5 +28,5 @@ MLFlow.NET provides an extension method to integrate with your services provider
 include MLFlow.NET.Lib
 ```
 
-In your services 
+In your Startup class add the services:
 ```
