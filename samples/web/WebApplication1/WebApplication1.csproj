@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="MLFlow.NET" Version="1.0.0-CI-20181206-023639" />
+    <PackageReference Include="MLFlow.NET" Version="1.0.0-CI-20181206-054144" />
 	  <!--<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />

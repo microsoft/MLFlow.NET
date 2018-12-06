@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MLFlow.NET.Lib.Contract;
+using MLFlow.NET.Lib.Model;
 using MLFlow.NET.Lib.Model.Responses.Run;
 using WebApplication1.Models;
 
@@ -20,7 +21,7 @@ namespace WebApplication1.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var newExperiment = await this.flowService.CreateExperiment("New_Experiement");
+            var newExperiment = await this.flowService.GetOrCreateExperiment("New_Experiement");
             var experimentId = newExperiment.ExperimentId;
 
             var userId = "azadeh khojandi";
