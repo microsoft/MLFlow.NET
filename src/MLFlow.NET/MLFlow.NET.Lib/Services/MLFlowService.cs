@@ -30,9 +30,49 @@ namespace MLFlow.NET.Lib.Services
             return response;
         }
 
+        public async Task<CreateResponse> GetOrCreateExperiment(
+            string name,
+            string artifact_location = null)
+        {
+
+            var experiments = await ListExperiments(ViewType.ALL);
+
+            var existing = experiments.Experiments.FirstOrDefault(_ => _.Name.ToLower() == name.ToLower());
+
+            if (existing != null)
+            {
+                return new CreateResponse()
+                {
+                    ExperimentId = existing.ExperimentId
+                };
+            }
+
+            return await CreateExperiment(name, artifact_location);
+        }
+
         public async Task<RunResponse> CreateRun(CreateRunRequest request)
         {
             var response = await _httpService.Post<RunResponse, CreateRunRequest>(_getPath(MLFlowAPI.Runs.BasePath, MLFlowAPI.Runs.Create), request);
+            return response;
+        }
+
+        public async Task<ListExperimentsResponse> ListExperiments(ViewType viewtype)
+        {
+
+
+            var response = await _httpService.Get<ListExperimentsResponse, Object>(
+                _getPath(MLFlowAPI.Experiments.BasePath, MLFlowAPI.Experiments.List),
+                new { viewtype = viewtype.ToString() });
+
+            return response;
+        }
+
+        public async Task<GetExperimentResponse> GetExperiment(int experiment_id)
+        {
+            var response = await _httpService.Get<GetExperimentResponse, Object>(
+                _getPath(MLFlowAPI.Experiments.BasePath, MLFlowAPI.Experiments.Get),
+                new { experiment_id });
+
             return response;
         }
 
@@ -73,25 +113,7 @@ namespace MLFlow.NET.Lib.Services
             return response;
         }
 
-        public async Task<ListExperimentsResponse> ListExperiments(ViewType viewtype)
-        {
-
-
-            var response = await _httpService.Get<ListExperimentsResponse, Object>(
-                _getPath(MLFlowAPI.Experiments.BasePath, MLFlowAPI.Experiments.List),
-                new { viewtype = viewtype.ToString() });
-
-            return response;
-        }
-
-        public async Task<GetExperimentResponse> GetExperiment(int experiment_id)
-        {
-            var response = await _httpService.Get<GetExperimentResponse, Object>(
-                _getPath(MLFlowAPI.Experiments.BasePath, MLFlowAPI.Experiments.Get),
-                new {experiment_id });
-
-            return response;
-        }
+       
 
         long _getTimestamp()
         {

@@ -42,6 +42,29 @@ namespace MLFlow.NET.Tests
             Assert.IsNotNull(result.Run.Info);
             Assert.AreEqual(result.Run.Info.RunUuid, "4b6561093eed4107a565a55b41f5b2f2");
         }
+
+        [TestMethod]
+        public async Task TestGetOrCreate()
+        {
+
+            var flowService = Resolve<IMLFlowService>();
+            var g = Guid.NewGuid().ToString();
+            var result = await flowService.CreateExperiment(g);
+
+            
+            var resultFail = await flowService.CreateExperiment(g);
+            Assert.IsNull(resultFail);
+           
+
+            Assert.IsNotNull(result);
+
+            var result2 = await flowService.GetOrCreateExperiment(g);
+
+            Assert.IsNotNull(result2);
+
+            Assert.AreEqual(result2.ExperimentId, result.ExperimentId);
+        }
+
         [TestMethod]
         public async Task TestCreateRun()
         {

@@ -22,5 +22,9 @@ namespace MLFlow.NET.Lib.Contract
 
         Task<ListExperimentsResponse> ListExperiments(ViewType viewtype);
         Task<GetExperimentResponse> GetExperiment(int experiment_id);
+
+        Task<CreateResponse> GetOrCreateExperiment(
+            string name,
+            string artifact_location = null);
     }
 }
