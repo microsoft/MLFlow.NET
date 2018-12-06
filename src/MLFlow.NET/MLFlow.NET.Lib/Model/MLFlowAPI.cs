@@ -17,6 +17,7 @@ namespace MLFlow.NET.Lib.Model
             public const string BasePath = "runs";
             public const string Create = "create";
             public const string LogMetric = "log-metric";
+            public const string LogParam = "log-parameter";
         }
 
        

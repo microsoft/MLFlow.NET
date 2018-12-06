@@ -53,7 +53,21 @@ namespace MLFlow.NET.Tests
             var result = await flowService.CreateExperiment(g);
             Assert.IsNotNull(result);
 
-            var experimentId = result.ExperimentId;
+            var runResult = await _createRun(result.ExperimentId, flowService);
+
+            Assert.IsNotNull(runResult);
+        }
+
+        public async Task<CreateResponse> _createExperiment(string id, IMLFlowService flowService)
+        {
+            var result = await flowService.CreateExperiment(id);
+
+            return result;
+        }
+
+        public async Task<RunResponse> _createRun(int experiementId, IMLFlowService flowService)
+        {
+            var experimentId = experiementId;
             var userId = "azadeh khojandi";
             var runName = "this is a run name";
             var sourceType = SourceType.NOTEBOOK;
@@ -69,10 +83,11 @@ namespace MLFlow.NET.Tests
             var lastcommit = repo.Commits.Last();
             var sourceVersion = lastcommit.Sha;
 
+            //todo [az] pass tags
             //RunTag[] tags = new RunTag[]{new RunTag(){Key = "testkey",Value = "testvalue"} };
 
-            //todo [az] run name is empty - check mlflow source code
-            
+            //todo [az] runame is empty - check mlflow source code
+
             RunTag[] tags = null;
             var runResult = await flowService.CreateRun(
                 experimentId,
@@ -85,7 +100,49 @@ namespace MLFlow.NET.Tests
                 sourceVersion,
                 tags);
 
+            return runResult;
+        }
+
+        [TestMethod]
+        public async Task TestLogMetric()
+        {
+
+            var flowService = Resolve<IMLFlowService>();
+            var g = Guid.NewGuid().ToString();
+            var result = await _createExperiment(g, flowService);
+            Assert.IsNotNull(result);
+
+            var runResult = await _createRun(result.ExperimentId, flowService);
+
             Assert.IsNotNull(runResult);
+
+            var logResult = await flowService
+                .LogMetric(
+                    runResult.Run.Info.RunUuid,
+                    "Somekey", 1234);
+
+            Assert.IsNotNull(logResult);
+        }
+
+        [TestMethod]
+        public async Task TestLogParam()
+        {
+
+            var flowService = Resolve<IMLFlowService>();
+            var g = Guid.NewGuid().ToString();
+            var result = await _createExperiment(g, flowService);
+            Assert.IsNotNull(result);
+
+            var runResult = await _createRun(result.ExperimentId, flowService);
+
+            Assert.IsNotNull(runResult);
+
+            var logResult = await flowService
+                .LogParameter(
+                    runResult.Run.Info.RunUuid,
+                    "Somekey", "some parameter");
+
+            Assert.IsNotNull(logResult);
         }
     }
 }
