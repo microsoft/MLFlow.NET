@@ -29,7 +29,7 @@ namespace WebApplication1.Controllers
             var sourceType = SourceType.NOTEBOOK;
             var sourceName = "String descriptor for the run’s source";
             var entryPointName = "Name of the project entry point associated with the current run, if any.";
-            var startTime = ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds(); //unix timestamp
+            var startTime = ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeMilliseconds(); //unix timestamp
 
            
 
