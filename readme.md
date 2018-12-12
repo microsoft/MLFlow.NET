@@ -1,6 +1,6 @@
 # MLFlow.NET
 
-[![Build Status](https://dev.azure.com/aussiedevcrew/MLFlow.NET/_apis/build/status/MLFlow.NET-ASP.NET%20Core-CI)](https://dev.azure.com/aussiedevcrew/MLFlow.NET/_build/latest?definitionId=3)
+[![Build Status](https://dev.azure.com/aussiedevcrew/MLFlow.NET/_apis/build/status/MLFlow.NET-ASP.NET%20Core-CI-Github)](https://dev.azure.com/aussiedevcrew/MLFlow.NET/_build/latest?definitionId=4)
 
 
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/MLFlow.NET.svg)](https://www.nuget.org/packages/MLFlow.NET/)
@@ -8,6 +8,8 @@
 
 
 MLFlow.NET is a .NET Standard 2.0 based wrapper for the REST based [MLFlow](https://mlflow.org/) server API . The SDK package allows you to call the MLFlow server API from .NET apps. A sample use case is writing a .NET Core app that validates a machine learning model or API and stores the result in MLFlow.
+
+MLFlow.NET is a work in progress - please provide feedback via the issues tab. 
 
 ## Prerequisite
 
