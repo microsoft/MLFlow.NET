@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using MLFlow.NET.Lib.Contract;
+using MLFlow.NET.Lib.Helpers;
 using MLFlow.NET.Lib.Model;
 using MLFlow.NET.Lib.Model.Responses.Experiment;
 using MLFlow.NET.Lib.Model.Responses.Run;
@@ -82,7 +83,7 @@ namespace MLFlow.NET.Lib.Services
         {
             if (!timeStamp.HasValue)
             {
-                timeStamp = _getTimestamp();
+                timeStamp = UnixDateTimeHelpers.GetCurrentTimestampMilliseconds();
             }
 
             var response = await _httpService.Post<LogMetric, Dictionary<string, string>>(
@@ -111,13 +112,6 @@ namespace MLFlow.NET.Lib.Services
                 ));
 
             return response;
-        }
-
-       
-
-        long _getTimestamp()
-        {
-            return ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds();
         }
 
         string _getPath(string basePart, string method)

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LibGit2Sharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MLFlow.NET.Lib.Contract;
+using MLFlow.NET.Lib.Helpers;
 using MLFlow.NET.Lib.Model;
 using MLFlow.NET.Lib.Model.Responses.Experiment;
 using MLFlow.NET.Lib.Model.Responses.Run;
@@ -95,8 +96,7 @@ namespace MLFlow.NET.Tests
             var sourceName = "String descriptor for the run’s source";
 
             var entryPointName = "Name of the project entry point associated with the current run, if any.";
-            var startTime = ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds(); //unix timestamp
-
+            var startTime = UnixDateTimeHelpers.GetCurrentTimestampMilliseconds(); //unix timestamp
 
             var path = Directory.GetCurrentDirectory();
             var repopath = path.Substring(0, path.IndexOf("src", StringComparison.Ordinal));
@@ -108,7 +108,6 @@ namespace MLFlow.NET.Tests
             RunTag[] tags = { new RunTag() { Key = "testkey", Value = "testvalue" } };
 
             //todo [az] run name is empty - check mlflow source code
-            //todo [az] unix startTime not showing correct time on the UI
 
             var createRunRequest = new CreateRunRequest()
             {
